@@ -1,0 +1,366 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin.Master" AutoEventWireup="true" CodeBehind="add-student.aspx.cs" Inherits="Student.admin.add_student" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        function ImagePreview(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('<%=img.ClientID %>').src = e.target.result;
+                    document.getElementById('<%=img.ClientID %>').style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div class="page-title-area">
+        <div class="row align-items-center">
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <div class="breadcrumbs-area clearfix">
+                    <h4 class="page-title pull-left">Add Student Section</h4>
+                    <ul class="breadcrumbs pull-left">
+                        <li><a href="student.aspx">Student</a></li>
+                        <li><span>Add</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 text-right clearfix">
+                <div class="user-profile pull-right">
+                    <img class="avatar user-thumb" src="../assets/images/admin.png" alt="avatar">
+                    <h4 class="user-name dropdown-toggle" data-toggle="dropdown">ADMIN <i class="fa fa-angle-down"></i></h4>
+                    <div class="dropdown-menu">
+                        <asp:LinkButton ID="LinkButtonLogout" runat="server" CssClass="dropdown-item" OnClick="LinkButtonLogout_Click" CausesValidation="false">Log Out</asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content-inner">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <div class="card">
+
+                    <asp:Panel ID="ErrorPanel" runat="server" CssClass="alert alert-danger alert-dismissible fade show" Visible="false">
+                        <strong>Info: </strong>
+                        <asp:Literal ID="ErrorMessage" runat="server" />
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </asp:Panel>
+                    <asp:Panel ID="SuccessPanel" runat="server" CssClass="alert alert-success alert-dismissible fade show" Visible="false">
+                        <strong>Info: </strong>
+                        <asp:Literal ID="SuccessMessage" runat="server" />
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </asp:Panel>
+
+                    <div class="content">
+                        <div class="card-body">
+                            <p class="text-muted font-14 mb-4">Please fill up the form in order to add Student records</p>
+                            <span style="color: blue">
+                                <h3>Student Details</h3>
+                            </span>
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="studid" runat="server" CssClass="col-form-label">Student ID:</asp:Label>
+                                    <asp:TextBox ID="txtstdid" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvstdid" runat="server" ErrorMessage="Student ID is Required" ControlToValidate="txtstdid"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="roomno" runat="server" CssClass="col-form-label">RoomNo:</asp:Label>
+                                    <asp:TextBox ID="txtroomno" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvroomno" runat="server" ErrorMessage="RoomNo is Required" ControlToValidate="txtroomno"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="fname" runat="server" CssClass="col-form-label">First Name:</asp:Label>
+                                    <asp:TextBox ID="txtfname" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvfname" runat="server" ErrorMessage="First Name is Required" ControlToValidate="txtfname"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="lname" runat="server" CssClass="col-form-label">Last Name:</asp:Label>
+                                    <asp:TextBox ID="txtlname" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvlname" runat="server" ErrorMessage="Last Name is Required" ControlToValidate="txtlname"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="email" runat="server" CssClass="col-form-label">Email ID:</asp:Label>
+                                    <asp:TextBox ID="txtemail" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvemail" runat="server" ErrorMessage="Email ID is Required" ControlToValidate="txtemail"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revemail" runat="server" ErrorMessage="valid Email Id enter" ControlToValidate="txtemail"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"></asp:RegularExpressionValidator>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="lblDepartment" runat="server" CssClass="col-form-label">Class:</asp:Label>
+                                    <asp:DropDownList
+                                        ID="ddlDepartment"
+                                        runat="server"
+                                        CssClass="custom-select"
+                                        AppendDataBoundItems="True"
+                                        AutoPostBack="False">
+                                        <asp:ListItem Text="Choose.." Value="" />
+                                    </asp:DropDownList>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="gender" runat="server" CssClass="col-form-label">Gender:</asp:Label>
+                                    <asp:DropDownList
+                                        ID="dgender"
+                                        runat="server"
+                                        CssClass="custom-select"
+                                        AppendDataBoundItems="True"
+                                        AutoPostBack="False">
+                                        <asp:ListItem Text="Choose.." Value="" />
+                                        <asp:ListItem Text="Male" Value="Male" />
+                                        <asp:ListItem Text="Female" Value="Female" />
+                                        <asp:ListItem Text="Other" Value="Other" />
+                                    </asp:DropDownList>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="lbldob" runat="server" CssClass="col-form-label" AssociatedControlID="txtdob">D.O.B</asp:Label>
+                                    <asp:TextBox ID="txtdob" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvdob" runat="server" ErrorMessage="Date of Birth is Required" ControlToValidate="txtdob"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="mobile" runat="server" CssClass="col-form-label">Contact Number:</asp:Label>
+                                    <asp:TextBox ID="txtmobile" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvmobile" runat="server" ErrorMessage="Contact Number is Required" ControlToValidate="txtmobile"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revmobile" runat="server" ErrorMessage="Please enter a valid Contact Number" ControlToValidate="txtmobile"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small" ValidationExpression="^[0-9]{10}$"></asp:RegularExpressionValidator>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="fuStudentImage">Student Image</label>
+                                    <asp:FileUpload ID="fuStudentImage" runat="server" CssClass="form-control" onchange="ImagePreview(this);" />
+                                    <asp:Image ID="img" runat="server" Width="100px" Height="100px" />
+                                    <asp:HiddenField ID="hdnimg" runat="server" />
+                                </div>
+
+                            </div>
+
+                            <span style="color: blue">
+                                <h3>Parent Details</h3>
+                            </span>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="parentname" runat="server" CssClass="col-form-label">Parent Name:</asp:Label>
+                                    <asp:TextBox ID="txtparentname" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvparentname" runat="server" ErrorMessage="Parent Name is Required" ControlToValidate="txtparentname"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="lblOccupation" runat="server" CssClass="col-form-label">Occupation</asp:Label>
+                                    <asp:DropDownList ID="ddlOccupation" runat="server" CssClass="custom-select" AutoPostBack="False">
+                                        <asp:ListItem Text="Choose.." Value="" />
+                                        <asp:ListItem Text="Doctor" Value="Doctor" />
+                                        <asp:ListItem Text="Engineer" Value="Engineer" />
+                                        <asp:ListItem Text="Business man" Value="Business man" />
+                                        <asp:ListItem Text="Teacher" Value="Teacher" />
+                                        <asp:ListItem Text="Driver" Value="Driver" />
+                                        <asp:ListItem Text="Pilot" Value="Pilot" />
+                                        <asp:ListItem Text="Software developer" Value="Software developer" />
+                                        <asp:ListItem Text="Farmer" Value="Farmer" />
+                                        <asp:ListItem Text="Other" Value="other" />
+                                    </asp:DropDownList>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="parentmobile" runat="server" CssClass="col-form-label"> Parent Contact Number:</asp:Label>
+                                    <asp:TextBox ID="txtpmnumber" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvpmobile" runat="server" ErrorMessage="Parent Contact Number is Required" ControlToValidate="txtpmnumber"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revpmobile" runat="server" ErrorMessage="Please enter a valid Contact Number" ControlToValidate="txtpmnumber"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small" ValidationExpression="^[0-9]{10}$"></asp:RegularExpressionValidator>
+                                </div>
+                            </div>
+                            <span style="color: blue">
+                                <h3>Address</h3>
+                            </span>
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="country" runat="server" CssClass="col-form-label">Country:</asp:Label>
+                                    <asp:TextBox ID="txtcountry" runat="server" CssClass="form-control" />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="state" runat="server" CssClass="col-form-label">State:</asp:Label>
+                                    <asp:TextBox ID="txtstate" runat="server" CssClass="form-control" />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="district" runat="server" CssClass="col-form-label">District:</asp:Label>
+                                    <asp:TextBox ID="txtdistrict" runat="server" CssClass="form-control" />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="pincode" runat="server" CssClass="col-form-label"> Pincode:</asp:Label>
+                                    <asp:TextBox ID="txtpincode" runat="server" CssClass="form-control" />
+                                    <asp:RegularExpressionValidator ID="revpincode" runat="server" ErrorMessage="Please enter a valid pincode" ControlToValidate="txtpincode"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small" ValidationExpression="^[0-9]{6}$"></asp:RegularExpressionValidator>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="city" runat="server" CssClass="col-form-label">City/village:</asp:Label>
+                                    <asp:TextBox ID="txtcity" runat="server" CssClass="form-control" />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="address" runat="server" CssClass="col-form-label">Address:</asp:Label>
+                                    <asp:TextBox ID="txtaddress" runat="server" CssClass="form-control" TextMode="MultiLine" />
+                                </div>
+
+                            </div>
+                            <span style="color: blue">
+                                <h3>Set Password for Student Login</h3>
+                            </span>
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="password" runat="server" CssClass="col-form-label">Password:</asp:Label>
+                                    <asp:TextBox ID="txtpassword" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvpassword" runat="server" ErrorMessage="Password Required" ControlToValidate="txtpassword"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="confirmPassword" runat="server" CssClass="col-form-label">Confirmation Password:</asp:Label>
+                                    <asp:TextBox ID="txtconfirmpassword" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvconfirmpassword" runat="server" ErrorMessage="Confirm Password Required" ControlToValidate="txtconfirmpassword"
+                                        ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="cvconfirmpassword" runat="server" ErrorMessage="Password Must Match" ControlToValidate="txtconfirmpassword"
+                                        ControlToCompare="txtpassword" ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small"></asp:CompareValidator>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>Webcam Capture</label>
+                                    <div>
+                                        <video id="video" width="320" height="240" autoplay></video>
+                                        <button type="button" id="capture" class="btn btn-primary">Capture</button>
+                                        <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+                                    </div>
+                                    <img id="capturedImage" alt="Captured Image" />
+                                    <asp:HiddenField ID="hdnCapturedImg" runat="server" />
+                                </div>
+
+                            </div>
+                            <asp:Button ID="btnAddStudent" runat="server" Text="Add" CssClass="btn btn-primary"
+                                OnClick="btnAddStudent_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <%--  <script>
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+
+        const fields = Array.from(document.querySelectorAll('input, textarea')).filter(field => {
+            return !field.disabled && !field.hidden;
+        });
+        let currentFieldIndex = 0;
+
+        function moveToNextField() {
+            if (currentFieldIndex < fields.length - 1) {
+                currentFieldIndex++;
+                fields[currentFieldIndex].focus();
+                console.log(`Moved to the next field: ${fields[currentFieldIndex].name || fields[currentFieldIndex].placeholder || 'field'}`);
+            } else {
+                console.log("No more fields to move to.");
+            }
+        }
+
+        function fillCurrentField(event) {
+            const transcript = event.results[0][0].transcript.trim().toLowerCase();
+            const activeElement = document.activeElement;
+
+            if (transcript.includes("next")) {
+                moveToNextField();
+            } else if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+                activeElement.value = transcript;
+                console.log(`Filled field with: ${transcript}`);
+            } else {
+                console.error("No input or textarea field is focused.");
+            }
+        }
+
+        recognition.start();
+
+        recognition.onresult = fillCurrentField;
+
+        recognition.onerror = (event) => {
+            console.error("Speech recognition error: " + event.error);
+            recognition.start();
+        };
+
+        recognition.onend = () => {
+            recognition.start();
+        };
+
+        console.log("Speech recognition is active. Click on any input field and start speaking. Say 'next' to move to the next field.");
+    </script>--%>
+
+
+
+
+    <script>
+        function captureImage() {
+
+            const video = document.getElementById("video");
+            const canvas = document.getElementById("canvas");
+            const capturedImage = document.getElementById("capturedImage");
+
+            const context = canvas.getContext("2d");
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const base64Image = canvas.toDataURL("image/png");
+
+            capturedImage.src = base64Image;
+
+            document.getElementById('<%= hdnCapturedImg.ClientID %>').value = base64Image;
+        }
+
+        function startWebcam() {
+            const video = document.getElementById("video");
+
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.log("Error accessing webcam: ", error);
+                });
+        }
+
+        window.onload = function () {
+            startWebcam();
+            document.getElementById("capture").addEventListener("click", captureImage);
+        };
+    </script>
+
+</asp:Content>

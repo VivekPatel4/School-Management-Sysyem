@@ -1,0 +1,285 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="teacher.master.cs" Inherits="Student.teacher.teacher" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Teacher Dashboard</title>
+    <link href="..\teacher\main.css" rel="stylesheet" />
+    <link href="..\teacher\main1.css" rel="stylesheet" />
+    <link href="..\assets\css\themify-icons.css" rel="stylesheet" />
+    <link href="..\teacher\notification.css" rel="stylesheet" />
+    <link href="..\assets\css\font-awesome.min.css" rel="stylesheet" />
+    <style>
+        .navigation ul li.active {
+            background: #fff;
+            color: #3c009d;
+            border-radius: 30px 0 0 30px;
+        }
+
+            .navigation ul li.active a {
+                color: var(--blue);
+            }
+
+        .navigation ul li a {
+           
+            color: white;
+           
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            ul li {
+                position: relative;
+            }
+
+        /* Main Menu Styling */
+        .menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 10px;
+            color: #333;
+        }
+
+        /* Submenu (Hidden by Default) */
+        .submenu {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+        }
+
+            .submenu li {
+                padding: 5px 0;
+            }
+
+            /* Submenu Links */
+            .submenu a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: #555;
+                padding: 5px 0;
+            }
+
+            .submenu .icon {
+                margin-right: 8px;
+            }
+
+        /* Arrow Rotation */
+        .submenu-arrow ion-icon {
+            transition: transform 0.3s ease;
+        }
+
+            .submenu-arrow ion-icon.rotate {
+                transform: rotate(180deg);
+            }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <!-- Sidebar Navigation -->
+            <div class="navigation">
+                <ul>
+                    <li><a href="#"><span class="icon">
+                        <ion-icon name="book-outline"></ion-icon>
+                    </span><span class="title">Home</span></a></li>
+
+                    <li><a href="dashboard.aspx"><span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span><span class="title">Dashboard</span></a></li>
+
+                    <li><a href="schedule.aspx"><span class="icon">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                    </span><span class="title">Schedule</span></a></li>
+
+                    <li><a href="attendance-report.aspx"><span class="icon">
+                        <ion-icon name="reader-outline"></ion-icon>
+                    </span><span class="title">Attendance</span></a></li>
+
+                    <li><a href="PendingHistory.aspx"><span class="icon">
+                        <ion-icon name="hourglass-outline"></ion-icon>
+                    </span><span class="title">Pending</span></a></li>
+
+                    <li><a href="ApprovedHistory.aspx"><span class="icon">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    </span>Approved</a></li>
+
+                    <li><a href="DeclinedHistory.aspx"><span class="icon">
+                        <ion-icon name="close-circle-outline"></ion-icon>
+                    </span><span class="title">Declined</span></a></li>
+
+                    <li><a href="LeaveHistory.aspx"><span class="icon">
+                        <ion-icon name="time-outline"></ion-icon>
+                    </span><span class="title">Leave History</span></a></li>
+                </ul>
+            </div>
+
+            <div class="main">
+                <div class="topbar">
+                    <div class="toggel">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+
+                    <div class="search">
+                        <label>
+                            <asp:TextBox ID="serch" runat="server" placeholder="Search here" CssClass="input"></asp:TextBox>
+                            <ion-icon name="search-outline"></ion-icon>
+                        </label>
+                    </div>
+
+                    <div class="header-area">
+                        <div class="row align-items-center">
+
+
+                            <div class="col-md-6 col-sm-4 clearfix">
+                                <ul class="notification-area pull-right">
+
+                                    <li class="dropdown">
+                                        <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
+                                            <span><%= LeaveUnreadCount + BirthdayCount %></span>
+                                        </i>
+                                        <div class="dropdown-menu bell-notify-box notify-box">
+                                            <span class="notify-title">You have <%= LeaveUnreadCount + BirthdayCount %> <b>unread</b> notifications!
+                                            </span>
+
+                                            <div class="notify-list">
+
+                                                <% if (LeaveUnreadCount > 0)
+                                                    {
+                                                        foreach (System.Data.DataRow row in LeaveResults.Rows)
+                                                        { %>
+                                                <a href="studentLeave-details.aspx?leaveid=<%= row["lid"] %>" class="notify-item">
+                                                    <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
+                                                    <div class="notify-text">
+                                                        <p>
+                                                            <b><%= row["FirstName"] %> <%= row["LastName"] %></b> has recently applied for a leave.
+                                                        
+                                                            <br />
+                                                            (<%= row["stdid"] %>)
+                                                       
+                                                        </p>
+                                                        <span>at <%= row["PostingDate"] %></span>
+                                                    </div>
+                                                </a>
+                                                <%    }
+                                                    } %>
+
+
+                                                <% if (BirthdayCount > 0)
+                                                    {
+                                                        foreach (System.Data.DataRow row in BirthdayResults.Rows)
+                                                        { %>
+                                                <a href="Remainder.aspx" class="notify-item">
+                                                    <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
+                                                    <div class="notify-text">
+                                                        <p>
+                                                            <b><%= row["Name"] %> (Mobile: <%= row["MOBILENO"] %>)</b> has a call today for <%= row["remark"] %>.
+                                                       
+                                                        </p>
+                                                        <span>..</span>
+                                                    </div>
+                                                </a>
+                                                <%    }
+                                                    } %>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ls">
+                        <div class="user-profile pull-right">
+                            <img class="avatar user-thumb" src="../assets/images/avatar.jpg" alt="avatar" />
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">
+                                <asp:Label ID="lblstdDetails" runat="server" CssClass="std-details"></asp:Label>
+                                <i class="ti-angle-down"></i>
+                            </h4>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="my-profile.aspx">View Profile</a>
+                                <a class="dropdown-item" href="change-password-teacher.aspx">Password</a>
+                                <asp:LinkButton ID="btnLogout" runat="server" CssClass="dropdown-item" OnClick="btnLogout_Click" CausesValidation="false">Log Out</asp:LinkButton>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Placeholder for page-specific content -->
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+
+    <script>
+
+        document.querySelector('.user-profile').addEventListener('click', function (event) {
+            event.stopPropagation();
+            let dropdown = document.querySelector('.dropdown-menu');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        });
+
+
+        document.querySelector('.notification-area .dropdown-toggle').addEventListener('click', function (event) {
+            event.stopPropagation();
+            let dropdown = document.querySelector('.bell-notify-box');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        });
+
+
+        document.addEventListener('click', function () {
+            document.querySelector('.dropdown-menu').style.display = 'none';
+            document.querySelector('.bell-notify-box').style.display = 'none';
+        });
+
+    </script>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            const navItems = document.querySelectorAll(".navigation ul li");
+
+            // Get current page from URL
+            const currentPage = window.location.pathname.toLowerCase().split("/").pop().replace(".aspx", "");
+
+            navItems.forEach((item) => {
+                const link = item.querySelector("a");
+                if (link) {
+                    const href = link.getAttribute("href").toLowerCase().replace(".aspx", "");
+                    if (href === currentPage) {
+                        item.classList.add("active"); // permanent active class
+                    }
+                }
+
+                // Optional: hover class (temporary, just for visual effect)
+                item.addEventListener("mouseover", function () {
+                    navItems.forEach((i) => i.classList.remove("hovered"));
+                    this.classList.add("hovered");
+                });
+
+                item.addEventListener("mouseout", function () {
+                    this.classList.remove("hovered");
+                });
+            });
+        });
+    </script>
+
+
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/ionicons.min.js"></script>
+    <script src="../teacher/main.js"></script>
+</body>
+</html>

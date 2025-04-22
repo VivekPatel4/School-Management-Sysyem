@@ -1,0 +1,280 @@
+﻿/* General Table Styling */
+.table {
+    box-shadow: 0 0 10px;
+    width: 75%;
+    border-collapse: collapse;
+    margin: 90px 123px;
+    font-family: Arial, sans-serif;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+    .table th, .table td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        color:black;
+    }
+
+    .table td {
+        color: #555;
+    }
+
+    .table tr:hover {
+        background-color: #f9f9f9;
+    }
+
+/* Make the table responsive */
+@media screen and (max-width: 768px) {
+    .table {
+        width: 100%;
+        overflow-x: auto;
+        display: block;
+    }
+
+        .table th, .table td {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        /* Stacked table for small screens */
+        .table thead {
+            display: none;
+        }
+
+        .table tr {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .table td {
+            display: block;
+            text-align: right;
+            font-size: 14px;
+            padding-left: 50%;
+            position: relative;
+        }
+
+            .table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                font-weight: bold;
+            }
+
+            .table td:last-child {
+                border-bottom: none;
+            }
+}
+
+/* Responsive table header for smaller screens */
+@media screen and (max-width: 768px) {
+    .table th {
+        display: none;
+    }
+
+    .table td {
+        display: block;
+        width: 100%;
+        text-align: right;
+    }
+}
+
+
+
+
+/* Style for the student panel */
+.student-panel {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    text-align: center;
+}
+
+    /* Style for the student table inside the panel */
+    .student-panel .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        margin-left: 0px;
+    }
+
+        .student-panel .table th,
+        .student-panel .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .student-panel .table th {
+            background-color: #4CAF50; /* Green header */
+            color: white;
+            font-weight: bold;
+        }
+
+        .student-panel .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+
+
+.invisible-button {
+    background: transparent;
+    position: relative;
+    padding: 5px 15px;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 25px;
+    outline: none;
+    overflow: hidden;
+    color: black;
+    transition: color 0.3s 0.1s ease-out;
+    text-align: center;
+}
+
+    .invisible-button::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        content: '';
+        border-radius: 50%;
+        display: block;
+        width: 20em;
+        height: 20em;
+        left: -5em;
+        text-align: center;
+        transition: box-shadow 0.5s ease-out;
+        z-index: -1;
+    }
+
+    .invisible-button:hover {
+        color: #fff;
+        border: 1px solid rgb(117 116 202);
+    }
+
+        .invisible-button:hover::before {
+            box-shadow: inset 0 0 0 10em rgb(117 116 202);
+        }
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    .student-panel {
+        padding: 10px;
+    }
+
+        .student-panel .table th,
+        .student-panel .table td {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        /* Stacked table for small screens */
+        .student-panel .table thead {
+            display: none;
+        }
+
+        .student-panel .table tr {
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .student-panel .table td {
+            display: block;
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+        }
+
+            .student-panel .table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                font-weight: bold;
+                color: #4CAF50;
+            }
+
+            .student-panel .table td:last-child {
+                border-bottom: none;
+            }
+}
+
+/* From Uiverse.io by cssbuttons-io */
+.button {
+    appearance: button;
+    background-color: #1899D6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+    .button:after {
+        background-clip: padding-box;
+        background-color: #1CB0F6;
+        border: solid transparent;
+        border-radius: 16px;
+        border-width: 0 0 4px;
+        bottom: -4px;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .button:main, button:focus {
+        user-select: auto;
+    }
+
+    .button:hover:not(:disabled) {
+        filter: brightness(1.1);
+    }
+
+    .button:disabled {
+        cursor: auto;
+    }
+
+    .button:active:after {
+        border-width: 0 0 0px;
+    }
+
+    .button:active {
+        padding-bottom: 10px;
+    }

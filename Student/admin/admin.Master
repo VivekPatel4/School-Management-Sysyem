@@ -1,0 +1,265 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="admin.master.cs" Inherits="Student.admin.admin" %>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Admin Panel - Student Leave</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="<%= ResolveUrl("~/assets/images/icon/favicon.ico") %>" />
+    <link href="<%= ResolveUrl("~/admin/Style.css") %>" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="..\assets\css\responsive.css" rel="stylesheet" />
+    <link href="..\assets\css\styles.css" rel="stylesheet" />
+    <link href="..\assets\css\themify-icons.css" rel="stylesheet" />
+    <link href="..\assets\css\bootstrap.min.css" rel="stylesheet" />
+    <link href="..\assets\css\default-css.css" rel="stylesheet" />
+    <link href="..\assets\css\font-awesome.min.css" rel="stylesheet" />
+    <link href="..\assets\css\owl.carousel.min.css" rel="stylesheet" />
+    <link href="..\assets\css\slicknav.min.css" rel="stylesheet" />
+    <link href="..\assets\css\typography.css" rel="stylesheet" />
+    <style>
+        .page-container {
+            margin-left: -280px;
+            transition: margin-left 0.3s ease;
+        }
+
+            .page-container.sidebar-active {
+                margin-left: -30px;
+            }
+
+        .sidebar {
+            width: 250px; /* Adjust sidebar width as needed */
+            transition: transform 0.3s ease;
+        }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .sidebar:not(.active) {
+                transform: translateX(-100%);
+            }
+
+        .pull-right {
+            margin-right: -310px;
+        }
+
+        .page-container.sidebar-active .pull-right {
+            margin-right: -60px;
+        }
+
+        .header-area {
+            padding: 21px 30px;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <form id="form1" runat="server">
+
+        <div class="page-container sidebar-active">
+            <!-- Sidebar -->
+            <div class="sidebar active" id="sidebar" style="border-radius: 10px 10px;">
+                <div class="logo-details">
+                    <a href="dashboard.aspx">
+                        <img src="<%= ResolveUrl("~/assets/images/icon/vivek2.png") %>" alt="logo">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="dashboard.aspx">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="link_name">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="student.aspx">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Students Section</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="menu-toggle">
+                            <i class="fas fa-caret-down submenu-arrow"></i>
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                            <span>Teacher Section</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="teacher.aspx"><i class="fa-solid fa-plus"></i>Teacher</a></li>
+                            <li><a href="subject.aspx"><i class="fa-solid fa-book"></i>Subject</a></li>
+                            <li><a href="schedule.aspx"><i class="fa-regular fa-calendar-days"></i>Schedule</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="menu-toggle">
+                            <i class="fas fa-caret-down submenu-arrow"></i>
+                            <i class="fas fa-user"></i>
+                            <span>Leave</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="AdminLeave.aspx"><i class="fas fa-check"></i>Apply</a></li>
+                            <li><a href="Present.aspx"><i class="fas fa-child"></i>Present</a></li>
+                            <li><a href="absent.aspx"><i class="ti-home"></i>Absent</a></li>
+                            <li><a href="today-hostel.aspx"><i class="fa fa-hotel"></i>Today Return In Hostel/School</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="FeeStructure.aspx">
+                            <i class="fa fa-inr"></i>
+                            <span class="link_name">Fee Structure</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="department.aspx">
+                            <i class="fas fa-th-large"></i>
+                            <span class="link_name">Class Section</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Remainder.aspx">
+                            <i class="fas fa-calendar"></i>
+                            <span class="link_name">Reminder Section</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="leavetypes.aspx">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="link_name">Leave Types</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="menu-toggle">
+                            <i class="fas fa-caret-down submenu-arrow"></i>
+                            <i class="fas fa-briefcase"></i>
+                            <span>Manage Leave</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="PendingHistory.aspx"><i class="fas fa-spinner"></i>Pending</a></li>
+                            <li><a href="ApprovedHistory.aspx"><i class="fas fa-check"></i>Approved</a></li>
+                            <li><a href="DeclinedHistory.aspx"><i class="fas fa-times-circle"></i>Declined</a></li>
+                            <li><a href="LeaveHistory.aspx"><i class="fas fa-history"></i>Leave History</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="ManageAdmin.aspx">
+                            <i class="fas fa-lock"></i>
+                            <span class="link_name">Manage Admin</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="sidebar-toggle-btn" type="button" id="sidebarToggle">☰</button>
+            <div class="main-content">
+
+                <div class="header-area">
+                    <div class="row align-items-center">
+
+
+                        <div class="col-md-6 col-sm-4 clearfix">
+                            <ul class="notification-area pull-right" style="left: 480px;">
+
+                                <li class="dropdown">
+                                    <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
+                                        <span><%= LeaveUnreadCount + BirthdayCount %></span>
+                                    </i>
+                                    <div class="dropdown-menu bell-notify-box notify-box">
+                                        <span class="notify-title">You have <%= LeaveUnreadCount + BirthdayCount %> <b>unread</b> notifications!
+                                        </span>
+
+                                        <div class="notify-list">
+
+                                            <% if (LeaveUnreadCount > 0)
+                                                {
+                                                    foreach (System.Data.DataRow row in LeaveResults.Rows)
+                                                    { %>
+                                            <a href="studentLeave-details.aspx?leaveid=<%= row["lid"] %>" class="notify-item">
+                                                <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
+                                                <div class="notify-text">
+                                                    <p>
+                                                        <b><%= row["FirstName"] %> <%= row["LastName"] %></b> has recently applied for a leave.
+                                                    <br />
+                                                        (<%= row["stdid"] %>)
+                                                    </p>
+                                                    <span>at <%= row["PostingDate"] %></span>
+                                                </div>
+                                            </a>
+                                            <%    }
+                                                } %>
+
+
+                                            <% if (BirthdayCount > 0)
+                                                {
+                                                    foreach (System.Data.DataRow row in BirthdayResults.Rows)
+                                                    { %>
+                                            <a href="Remainder.aspx" class="notify-item">
+                                                <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
+                                                <div class="notify-text">
+                                                    <p>
+                                                        <b><%= row["Name"] %> (Mobile: <%= row["MOBILENO"] %>)</b> has a call today for <%= row["remark"] %>.
+                                                    </p>
+                                                    <span>..</span>
+                                                </div>
+                                            </a>
+                                            <%    }
+                                                } %>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+        </div>
+
+    </form>
+    <div class="footer-area">
+        <p>© <%= DateTime.Now.Year %> | Student Management System  | Developed By Vivek Patel </p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const sidebar = $('#sidebar');
+            const toggleBtn = $('#sidebarToggle');
+            const pageContainer = $('.page-container');
+
+            toggleBtn.on('click', function () {
+                sidebar.toggleClass('active');
+                pageContainer.toggleClass('sidebar-active');
+            });
+
+            $('.menu-toggle').on('click', function () {
+                const submenu = $(this).next('.submenu');
+                submenu.slideToggle(300);
+
+                $(this).parent().siblings().removeClass('active').find('.submenu').slideUp(300);
+                $(this).parent().toggleClass('active');
+            });
+
+            $('.submenu a').on('click', function () {
+                sidebar.removeClass('active');
+                pageContainer.removeClass('sidebar-active');
+            });
+
+            $('.nav-links li a').on('click', function () {
+                $('.nav-links li').removeClass('active');
+                $(this).parent().addClass('active');
+            });
+        });
+
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

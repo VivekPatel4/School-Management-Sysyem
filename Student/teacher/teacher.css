@@ -1,0 +1,243 @@
+﻿
+body, html {
+    background-color: #EBECF0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body, p, input, select, textarea, button {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.2px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+div, p {
+    color: #BABECC;
+    text-shadow: 1px 1px 1px #FFF;
+}
+
+
+.cn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+.header h1 {
+    font-size: 28px;
+    color: #61677C;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    height:42rem;
+}
+
+
+.img1 {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .img1 img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+
+.segment {
+    flex: 1;
+    padding: 32px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .segment h1 {
+        margin-bottom: 24px;
+        font-size: 24px;
+        color: #61677C;
+    }
+
+
+button, input {
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    border-radius: 320px;
+    padding: 16px;
+    background-color: #EBECF0;
+    text-shadow: 1px 1px 0 #FFF;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 300px;
+}
+
+label {
+    display: block;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+input {
+    margin-right: 8px;
+    box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+    input:focus {
+        box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+    }
+
+button {
+    color: #61677C;
+    font-weight: bold;
+    box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+    cursor: pointer;
+    font-weight: 600;
+    width: auto;
+}
+
+    button:hover {
+        box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+    }
+
+    button:active {
+        box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+    }
+
+    button.red {
+        display: inline-grid;
+        width: 100%;
+        color: #AE1100;
+    }
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .img1, .segment {
+        flex: none;
+        width: 100%;
+    }
+
+    .segment {
+        margin-top: 20px;
+    }
+
+    button, input {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    button, input {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+
+.button.red {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    background-color: #EBECF0;
+    color: #AE1100;
+    font-weight: bold;
+    border: none;
+    border-radius: 320px;
+    box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+    .button.red i {
+        margin-right: 8px;
+    }
+
+    .button.red:hover {
+        box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+    }
+
+    .button.red:active {
+        box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+    }
+
+.text-muted {
+    color: #6c757d;
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+    margin-left: 140px;
+    margin-top: 32px;
+}
+
+    .text-muted a {
+        color: #007bff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+        .text-muted a i {
+            margin-right: 8px;
+        }
+
+        .text-muted a:hover {
+            text-decoration: underline;
+        }
+
+.login-s2 {
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+    .login-s2::before {
+        content: "";
+        position: absolute;
+        height: 206%;
+        width: 97%;
+        background: #fcfcff;
+        border-radius: 50%;
+        left: -42%;
+        z-index: -1;
+        top: -47%;
+        box-shadow: inset 0 0 51px rgba(0, 0, 0, 0.1);
+    }
+
+    

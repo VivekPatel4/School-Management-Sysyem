@@ -1,0 +1,134 @@
+﻿/* General Styles */
+.main-content-inner {
+    padding: 20px;
+}
+
+.row {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.card {
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Alert Panels */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-dismissible .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 1.25rem;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+    .alert-dismissible .close:hover {
+        opacity: 0.8;
+    }
+
+
+
+.data-tabels {
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    /* Table styling */
+    .data-tabels .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0;
+    }
+
+        .data-tabels .table th,
+        .data-tabels .table td {
+            padding: 12px 15px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #e9ecef;
+        }
+
+        /* Header styling */
+        .data-tabels .table thead {
+            background-color: #f1f1f1;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+            .data-tabels .table thead th {
+                color: #333;
+                font-size: 14px;
+            }
+
+        /* Row hover effect */
+        .data-tabels .table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Status column styling */
+        .data-tabels .table td span {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+            .data-tabels .table td span[style*="color: green"] {
+                background-color: #e8f5e9;
+            }
+
+            .data-tabels .table td span[style*="color: red"] {
+                background-color: #fdecea;
+            }
+
+            .data-tabels .table td span[style*="color: blue"] {
+                background-color: #e3f2fd;
+            }
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .data-tabels .table th,
+    .data-tabels .table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+/* Center Alignment */
+.center {
+    text-align: center;
+    margin-top:-20px;
+}
+.at {
+    margin-bottom: 15px;
+}
+
